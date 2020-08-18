@@ -53,8 +53,11 @@ cb.forEach(function(item){
     if (item['Home Team Goals'] > item["Away Team Goals"]){
         winners.push (cb["Home Team Name"])
     }
+    else if (item['Home Team Goals'] < item['Away Team Goals']){
+        winners.push (item['Away Team Name'])
+    }
     else{
-        winners.push (cb["Away Team Name"])
+        winners.push (cb['Away Team Name'])
     }
 })
 return winners;
@@ -69,22 +72,48 @@ Parameters:
  * callback function getYears
  */
 
-function getWinnersByYear(/* code here */) {
+function getWinnersByYear(cb1, cb2) {
+    for (let i = 0; i < cb1.length; i++){
+        console.log(`In ${cb1[i]}, ${cb2[i]} won the world cup!`)
+    }
 
 };
 
-getWinnersByYear();
+getWinnersByYear(getYears(getFinals), getWinners(getFinals));
 
-/* Task 6: Write a function called `getAverageGoals` that accepts a parameter `data` and returns the the average number of home team goals and away team goals scored per match (Hint: use .reduce and do this in 2 steps) */
+/* Task 6: Write a function called `getAverageGoals` that accepts a parameter `data` and returns the average number of home team goals and away team goals scored per match (Hint: use .reduce and do this in 2 steps) */
 
-function getAverageGoals(/* code here */) {
 
-    /* code here */
+/*const getAverageGoals = fifaData.reduce(function(accum, item){
+    avgHome = accum + item['Home Team Goals']
+    avgHome = accum + item['Away Team Goals']
+   // (`${accum + item['Home Team Goals']}) ${accum + item['Away Team Goals']}`);
+    //return (`${avgHome / fifaData.length} ${avgAway / fifaData.length}`)
+    //return (`The Average score is `+ avgHome +` and the average score for away is `+ avgAway)
+    
+},0);
 
-};
+console.log(getAverageGoals);
+*/
 
-getAverageGoals();
-
+function getAverageGoals(cb1, i){
+    let team = [];
+    for (let b = 1; b <= i; b++){
+      team.push (cb1());
+    }
+    return(team);
+  }
+  
+  const bloop = (function scoreboard(){
+      let away = []
+      let home = []
+    let homeAvg = home.reduce(function(a,b){return a/b})
+    let awayAvg = away.reduce(function(a,b){return a/b})
+    console.log(getAverageGoals(`Average Away: ${away} Avg Home: ${home}`))
+  ),0};
+  //console.log(getAverageGoals(`Average Away: ${} Avg Home: ${home}`));
+  //console.log(getAverageGoals);
+  scoreboard();
 /// STRETCH 🥅 //
 
 /* Stretch 1: Create a function called `getCountryWins` that takes the parameters `data` and `team initials` and returns the number of world cup wins that country has had. 
