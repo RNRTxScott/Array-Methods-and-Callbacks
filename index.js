@@ -84,36 +84,20 @@ getWinnersByYear(getYears(getFinals), getWinners(getFinals));
 /* Task 6: Write a function called `getAverageGoals` that accepts a parameter `data` and returns the average number of home team goals and away team goals scored per match (Hint: use .reduce and do this in 2 steps) */
 
 
-/*const getAverageGoals = fifaData.reduce(function(accum, item){
-    avgHome = accum + item['Home Team Goals']
-    avgHome = accum + item['Away Team Goals']
-   // (`${accum + item['Home Team Goals']}) ${accum + item['Away Team Goals']}`);
-    //return (`${avgHome / fifaData.length} ${avgAway / fifaData.length}`)
-    //return (`The Average score is `+ avgHome +` and the average score for away is `+ avgAway)
-    
-},0);
-
-console.log(getAverageGoals);
-*/
-
-function getAverageGoals(cb1, i){
-    let team = [];
-    for (let b = 1; b <= i; b++){
-      team.push (cb1());
-    }
-    return(team);
-  }
-  
-  const bloop = (function scoreboard(){
-      let away = []
-      let home = []
-    let homeAvg = home.reduce(function(a,b){return a/b})
-    let awayAvg = away.reduce(function(a,b){return a/b})
-    console.log(getAverageGoals(`Average Away: ${away} Avg Home: ${home}`))
-  ),0};
-  //console.log(getAverageGoals(`Average Away: ${} Avg Home: ${home}`));
-  //console.log(getAverageGoals);
-  scoreboard();
+function getAverageGoals(data){
+    const home = [];
+    const away = [];
+    data.forEach((item) => {
+        home.push(item['Home Teach Goals']);
+        away.push(item['Away Team Goals']);
+    });
+    let homeAverage = home.reduce((item, accumulator) => item + accumulator, 0)
+    let homeAverage = away.reduce((item, accumulator) => item + accumulator, 0)
+    homeAverage /= home.length;
+    awayAverage /= away.length;
+    return {homeAverage, awayAverage};
+}
+console.log(getAverageGoals(fifaData));
 /// STRETCH 🥅 //
 
 /* Stretch 1: Create a function called `getCountryWins` that takes the parameters `data` and `team initials` and returns the number of world cup wins that country has had. 
